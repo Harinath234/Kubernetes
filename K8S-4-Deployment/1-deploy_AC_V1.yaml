@@ -28,4 +28,4 @@ spec:
     spec:
       containers:
         - name: fb-pod-cont
-          image: devopshubg333/batch16d:fb_httpd
+          image: harinath93811/dockerized-app:fb_httpd
