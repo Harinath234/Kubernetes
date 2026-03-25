@@ -28,4 +28,4 @@ spec:
     spec:
       containers:
         - name: fb-pod-cont
-          image: devopshubg333/batch16d:pythonimg
+          image: harinath93811/dockerized-app:pythonimg
