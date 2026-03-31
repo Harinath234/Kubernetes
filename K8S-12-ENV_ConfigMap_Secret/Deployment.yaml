@@ -10,7 +10,6 @@ spec:
       app: backend
   template:
     metadata:
-      name: env-var-pod
       labels:
         app: backend
     spec:
