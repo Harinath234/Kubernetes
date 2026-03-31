@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fbpod
+  labels:
+    app: facebook
+    env: lab
+    
+  annotations:
+    imageregistry: "https://hub.docker.com/"
+    build-url: "https://jenkins.example.com/build/142"
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "8080"
+
+spec:
+  containers:
+  - name: nginx
+    image: nginx
