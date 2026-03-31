@@ -1,0 +1,19 @@
+--- 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: envex-pod 
+
+spec: 
+  containers:
+    - name: insta-pod-cont
+      image: harinath93811/dockerized-app:fb_httpd
+      env:
+        - name: Technology
+          value: AWS DevOps 
+
+        - name: DevopsEngineer 
+          value: Harinath 
+  
+        - name: Place
+          value: Hyderabad
