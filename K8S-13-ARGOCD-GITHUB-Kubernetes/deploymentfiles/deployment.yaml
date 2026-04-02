@@ -1,0 +1,27 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fb-deploy 
+  labels:
+    app: facebook
+    env: lab 
+
+spec:
+  selector:
+    matchLabels:
+      app: facebook 
+  replicas: 2
+      
+  template:
+    metadata:
+      name: fb-pod 
+      labels:
+        app: facebook
+        version: v1_AC
+    spec:
+      containers:
+        - name: fb-pod-cont
+          image: harinath93811/dockerized-app:pythonimg
+          ports:
+            - containerPort: 8080
