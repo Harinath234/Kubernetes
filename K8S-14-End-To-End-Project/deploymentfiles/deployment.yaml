@@ -11,18 +11,17 @@ spec:
   selector:
     matchLabels:
       app: facebook 
-  replicas: 2  
+  replicas: 2
+      
   template:
     metadata:
       name: fb-pod 
       labels:
         app: facebook
-        env: lab
-        tier: frontend 
         version: v1_AC
     spec:
       containers:
         - name: fb-pod-cont
-          image: devopshubg333/batch16d:5
+          image: harinath93811/dockerized-app:19
           ports:
             - containerPort: 8080
