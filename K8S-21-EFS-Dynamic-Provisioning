@@ -1,0 +1,57 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: efs-dynamic-sc
+provisioner: efs.csi.aws.com
+parameters:
+  provisioningMode: efs-ap
+  fileSystemId: fs-0f4f3a0cb8340b40c
+# fileSystemId: fs-0faed494333409ec3
+  directoryPerms: "700"
+  basePath: "/prod"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: efs-dynamic
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: "efs-dynamic-sc"
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: efs-dynamic
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    volumeMounts:
+    - name: efs-dynamic
+      mountPath: /usr/share/nginx/html
+  volumes:
+  - name: efs-dynamic
+    persistentVolumeClaim:
+      claimName: efs-dynamic
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-lb
+spec:
+  type: LoadBalancer
+  selector: # labels are used as selectors
+    app: nginx
+  ports:
+  - protocol: TCP
+    port: 80 # service port
+    targetPort: 80
