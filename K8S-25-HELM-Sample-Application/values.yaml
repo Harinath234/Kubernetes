@@ -1,0 +1,6 @@
+deploymnet:
+  replicacount: 1
+  imageversion: tomcat
+
+service:
+  nodeport: 31111

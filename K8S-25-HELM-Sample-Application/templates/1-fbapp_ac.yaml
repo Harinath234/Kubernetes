@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fb-deploy 
+  labels:
+    app: facebook
+ 
+spec:
+  selector:
+    matchLabels:
+      app: facebook 
+  replicas: {{ .Values.deploymnet.replicacount }}
+    
+  template:
+    metadata:
+      name: fb-pod 
+      labels:
+        app: facebook
+
+    spec:
+      containers:
+        - name: fb-pod-cont
+          image: harinath93811/dockerized-app:{{ .Values.deploymnet.imageversion }}
+          ports:
+            - containerPort: 8080

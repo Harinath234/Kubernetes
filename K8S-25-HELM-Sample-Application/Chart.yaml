@@ -1,0 +1,5 @@
+apiVersion: v2
+name: fb-app
+version: 1.0.0
+description: This is a test chart to deploy fb-app 
+appVersion: 2.23.1 
