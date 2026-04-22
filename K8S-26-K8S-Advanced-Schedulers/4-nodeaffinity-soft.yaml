@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-preferred-affinity-4
+spec:
+  affinity:
+    nodeAffinity:
+      # Required node affinity
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: env
+            operator: In
+            values:
+            - prod
+
+      # Preferred node affinities
+      preferredDuringSchedulingIgnoredDuringExecution:
+      # Preference 1: Prefer nodes in region us-east-1
+      - weight: 10
+        preference:
+          matchExpressions:
+          - key: topology.kubernetes.io/region
+            operator: In
+            values:
+            - us-east-1
+
+      # Preference 2: Prefer nodes in availability zone us-east-1b
+      - weight: 5
+        preference:
+          matchExpressions:
+          - key: topology.kubernetes.io/zone
+            operator: In
+            values:
+            - us-east-1b
+
+  containers:
+  - name: nginx
+    image: nginx

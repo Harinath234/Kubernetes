@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-on-node2-backend
+  labels:
+    app: backend
+spec:
+  nodeName: ip-192-168-19-129.ec2.internal #workernode-2 
+  containers:
+  - name: nginx
+    image: nginx
